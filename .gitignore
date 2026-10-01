@@ -1,0 +1,26 @@
+# 构建产物说明
+# 根目录的 HTML 由 build.mjs 从 src/pages/ 生成。
+# 这些是产物，但仍需提交 —— GitHub Pages 直接托管它们。
+# 若你习惯「提交产物」，保持现状即可。
+
+# 预览 / 调试产物
+.preview/
+*.log
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*~
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地调试缓存（勿提交）
+.t/
+
+# Node（本仓库不需要依赖，但以防万一）
+node_modules/
+package-lock.json

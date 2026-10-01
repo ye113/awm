@@ -1,0 +1,276 @@
+﻿/* ==========================================================================
+   AWM 站点 · 基础层
+   reset / 排版 / 背景场 / 通用工具类
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 24px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--ff);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--tx);
+  background: var(--bg-void);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 加载中：彻底锁滚动，避免穿透 */
+body.is-booting { overflow: hidden; height: 100vh; }
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  color: var(--tx-hi);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+}
+
+p { margin: 0; }
+
+a {
+  color: var(--c-cyan);
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease-out);
+}
+a:hover { color: var(--c-violet); }
+
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+::selection { background: rgba(129, 140, 248, 0.36); color: #fff; }
+
+/* ── 滚动条 ── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--c-cyan-dim), var(--c-violet-dim));
+  border-radius: var(--r-pill);
+  border: 2px solid var(--bg-deep);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--c-cyan), var(--c-violet));
+}
+
+/* ==========================================================================
+   背景场：网格 + 极光 + 噪点
+   ========================================================================== */
+
+.bg-field {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 620px at 50% -12%, rgba(34, 211, 238, 0.10), transparent 62%),
+    radial-gradient(1000px 560px at 88% 8%,   rgba(129, 140, 248, 0.10), transparent 60%),
+    radial-gradient(900px 520px  at 6% 82%,   rgba(244, 114, 182, 0.07), transparent 62%),
+    var(--bg-void);
+}
+
+/* 网格线（透视地面感） */
+.bg-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(129, 140, 248, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129, 140, 248, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 78% 62% at 50% 38%, #000 12%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 78% 62% at 50% 38%, #000 12%, transparent 78%);
+  animation: gridDrift 34s linear infinite;
+}
+
+/* 极光流动 */
+.bg-field::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background:
+    radial-gradient(closest-side, rgba(34, 211, 238, 0.16), transparent) 18% 24% / 42% 42% no-repeat,
+    radial-gradient(closest-side, rgba(129, 140, 248, 0.15), transparent) 78% 32% / 46% 46% no-repeat,
+    radial-gradient(closest-side, rgba(244, 114, 182, 0.12), transparent) 52% 88% / 40% 40% no-repeat;
+  filter: blur(66px);
+  animation: auroraDrift 26s var(--ease-io) infinite alternate;
+}
+
+/* 顶部扫光条 */
+.bg-scan {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.05), transparent);
+  background-size: 100% 220px;
+  animation: scanSweep 9s linear infinite;
+}
+
+/* ==========================================================================
+   版心 / 区块 / 通用容器
+   ========================================================================== */
+
+.wrap {
+  width: min(100% - 44px, var(--page-max));
+  margin-inline: auto;
+}
+
+.section {
+  padding: var(--sp-8) 0;
+  position: relative;
+}
+.section--tight { padding: var(--sp-7) 0; }
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-size: clamp(24px, 3.4vw, 34px);
+  position: relative;
+  padding-left: 16px;
+}
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.16em;
+  bottom: 0.16em;
+  width: 4px;
+  border-radius: var(--r-pill);
+  background: var(--grad-main);
+  box-shadow: var(--glow-cy);
+}
+
+.section-sub {
+  color: var(--tx-dim);
+  font-size: 14px;
+  margin-top: 6px;
+  padding-left: 16px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-cyan);
+  margin-bottom: var(--sp-3);
+}
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  border-radius: var(--r-pill);
+  background: var(--grad-main);
+}
+
+/* 文本渐变 */
+.grad-text {
+  background: var(--grad-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 220% auto;
+  animation: hueSlide 8s linear infinite;
+}
+
+/* ==========================================================================
+   工具类
+   ========================================================================== */
+
+.grid { display: grid; gap: var(--sp-4); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); }
+
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.gap-1 { gap: var(--sp-1); }
+.gap-2 { gap: var(--sp-2); }
+.gap-3 { gap: var(--sp-3); }
+.gap-4 { gap: var(--sp-4); }
+.wrapx { flex-wrap: wrap; }
+
+.mt-2 { margin-top: var(--sp-2); }
+.mt-3 { margin-top: var(--sp-3); }
+.mt-4 { margin-top: var(--sp-4); }
+.mt-5 { margin-top: var(--sp-5); }
+.mt-6 { margin-top: var(--sp-6); }
+.mb-4 { margin-bottom: var(--sp-4); }
+.tc { text-align: center; }
+
+.dim  { color: var(--tx-dim); }
+.faint{ color: var(--tx-faint); }
+.hi   { color: var(--tx-hi); }
+.sm   { font-size: 13px; }
+.xs   { font-size: 12px; }
+.mono { font-family: var(--ff-mono); }
+
+.hidden { display: none !important; }
+
+/* 屏幕阅读器专用 */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── 进场动画（IntersectionObserver 触发） ── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity   var(--t-slow) var(--ease-out),
+    transform var(--t-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* 无动画偏好：全部直接显示 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* 响应式收紧 */
+@media (max-width: 720px) {
+  body { font-size: 14.5px; }
+  .wrap { width: calc(100% - 32px); }
+  .section { padding: var(--sp-7) 0; }
+}

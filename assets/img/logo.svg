@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" role="img" aria-label="AWM">
+  <defs>
+    <linearGradient id="agrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#22d3ee"/>
+      <stop offset="52%"  stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="agrad2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#818cf8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.15"/>
+    </linearGradient>
+    <radialGradient id="aglow" cx="50%" cy="48%" r="52%">
+      <stop offset="0%"   stop-color="#22d3ee" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="asoft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.4"/>
+    </filter>
+  </defs>
+
+  <!-- 外环光晕 -->
+  <circle cx="64" cy="64" r="52" fill="url(#aglow)"/>
+
+  <!-- 六边外框 -->
+  <path d="M64 8 L112 36 L112 92 L64 120 L16 92 L16 36 Z"
+        stroke="url(#agrad)" stroke-width="3" stroke-linejoin="round"
+        fill="rgba(10,16,32,0.55)"/>
+
+  <!-- 内层六边 -->
+  <path d="M64 22 L100 43 L100 85 L64 106 L28 85 L28 43 Z"
+        stroke="url(#agrad2)" stroke-width="1.2" stroke-linejoin="round" fill="none"/>
+
+  <!-- 准星：四向刻度 -->
+  <g stroke="url(#agrad)" stroke-width="2.4" stroke-linecap="round">
+    <line x1="64" y1="28" x2="64" y2="38"/>
+    <line x1="64" y1="90" x2="64" y2="100"/>
+    <line x1="28" y1="64" x2="38" y2="64"/>
+    <line x1="90" y1="64" x2="100" y2="64"/>
+  </g>
+
+  <!-- 核心：A · W · M 三字母 -->
+  <g stroke="url(#agrad)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- A -->
+    <path d="M32 86 L42 46 L52 86"/>
+    <line x1="36.5" y1="72" x2="47.5" y2="72"/>
+    <!-- W -->
+    <path d="M55 46 L60 86 L66 58 L72 86 L77 46"/>
+    <!-- M -->
+    <path d="M81 86 L81 46 L89 70 L97 46 L97 86"/>
+  </g>
+
+  <!-- 核心光点 -->
+  <circle cx="64" cy="98" r="2.4" fill="#22d3ee" filter="url(#asoft)"/>
+  <circle cx="64" cy="98" r="1.2" fill="#ffffff" opacity="0.9"/>
+</svg>

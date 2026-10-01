@@ -1,0 +1,103 @@
+﻿/* ==========================================================================
+   AWM 站点 · 设计变量
+   改配色只改这一个文件。
+   ========================================================================== */
+
+:root {
+  /* ── 底色层级（越往后越亮） ── */
+  --bg-void:      #04060d;
+  --bg-deep:      #070b16;
+  --bg-base:      #0a1020;
+  --bg-raise:     #0f1729;
+  --bg-card:      rgba(18, 26, 46, 0.72);
+  --bg-card-hi:   rgba(26, 37, 63, 0.86);
+  --bg-glass:     rgba(12, 18, 34, 0.62);
+
+  /* ── 主色：青蓝 → 紫 → 品红 ── */
+  --c-cyan:       #22d3ee;
+  --c-cyan-dim:   #0e7490;
+  --c-violet:     #818cf8;
+  --c-violet-dim: #4338ca;
+  --c-pink:       #f472b6;
+  --c-pink-dim:   #be185d;
+  --c-amber:      #fbbf24;
+  --c-green:      #34d399;
+  --c-red:        #f87171;
+
+  /* ── 渐变 ── */
+  --grad-main:  linear-gradient(120deg, var(--c-cyan) 0%, var(--c-violet) 52%, var(--c-pink) 100%);
+  --grad-cool:  linear-gradient(135deg, var(--c-cyan) 0%, var(--c-violet) 100%);
+  --grad-warm:  linear-gradient(135deg, var(--c-violet) 0%, var(--c-pink) 100%);
+  --grad-edge:  linear-gradient(90deg, transparent, var(--c-cyan), var(--c-violet), var(--c-pink), transparent);
+
+  /* ── 文字 ── */
+  --tx-hi:    #f2f6ff;
+  --tx:       #c3cde4;
+  --tx-dim:   #8593b0;
+  --tx-faint: #5a6785;
+
+  /* ── 描边 ── */
+  --line:       rgba(129, 140, 248, 0.16);
+  --line-hi:    rgba(129, 140, 248, 0.34);
+  --line-glow:  rgba(34, 211, 238, 0.45);
+
+  /* ── 发光 ── */
+  --glow-cy:  0 0 24px rgba(34, 211, 238, 0.38);
+  --glow-vi:  0 0 28px rgba(129, 140, 248, 0.34);
+  --glow-pk:  0 0 28px rgba(244, 114, 182, 0.30);
+  --shadow-card: 0 18px 48px -18px rgba(0, 0, 0, 0.9);
+  --shadow-lift: 0 26px 64px -20px rgba(0, 0, 0, 0.95);
+
+  /* ── 圆角 ── */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+
+  /* ── 间距节奏 ── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 18px;
+  --sp-5: 26px;
+  --sp-6: 38px;
+  --sp-7: 56px;
+  --sp-8: 84px;
+
+  /* ── 动效 ── */
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io:   cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-fast: 0.18s;
+  --t-mid:  0.34s;
+  --t-slow: 0.72s;
+
+  /* ── 版心 ── */
+  --page-max: 1240px;
+  --nav-h: 68px;
+
+  /* ── 字体 ── */
+  --ff: "Inter", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei",
+        system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ff-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+}
+
+/* ── 亮色主题（可选，由 data-theme 切换） ── */
+[data-theme="light"] {
+  --bg-void:  #eef2fb;
+  --bg-deep:  #f6f8fe;
+  --bg-base:  #ffffff;
+  --bg-raise: #f2f5fd;
+  --bg-card:      rgba(255, 255, 255, 0.88);
+  --bg-card-hi:   rgba(255, 255, 255, 0.98);
+  --bg-glass:     rgba(255, 255, 255, 0.72);
+  --tx-hi:    #0b1220;
+  --tx:       #2c3a55;
+  --tx-dim:   #5b6a88;
+  --tx-faint: #8b98b4;
+  --line:     rgba(67, 56, 202, 0.14);
+  --line-hi:  rgba(67, 56, 202, 0.3);
+  --shadow-card: 0 14px 40px -16px rgba(30, 41, 90, 0.28);
+}

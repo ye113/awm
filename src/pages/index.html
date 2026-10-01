@@ -1,0 +1,165 @@
+---
+title: AWM | 超自然辅助社区
+desc: AWM 超自然辅助 —— 下载、功能与社区一站直达。自研预测、静默辅助、绘制导航。
+active: index.html
+---
+    <!-- ══ Hero ══ -->
+    <section class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="wrap">
+        <img class="hero__logo" src="./assets/img/logo.svg" alt="AWM Logo" width="132" height="132">
+
+        <div class="eyebrow flex-center">Preternatural Assistant</div>
+
+        <h1 class="hero__title">
+          <span class="grad-text" data-bind="site.name">AWM</span>
+        </h1>
+
+        <p class="hero__desc">
+          <span data-bind="site.full_name">AWM 超自然辅助</span> ·
+          <span data-bind="site.tagline">下载 · 功能 · 社区，一站直达</span>
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="./download.html"><span>⬇</span> 下载 AWM</a>
+          <a class="btn btn--ghost btn--lg" href="./features.html">查看功能介绍</a>
+          <a class="btn btn--text" href="https://www.chaoziran.com/" data-bind-attr="href:game.official_url" target="_blank" rel="noopener noreferrer">下载游戏本体 →</a>
+        </div>
+
+        <div class="hero__meta">
+          <span class="ver-badge"><span class="dot"></span> 当前版本 <strong data-bind="version.current">0.1.0</strong></span>
+          <span>更新于 <b data-bind="version.date">—</b></span>
+          <span><b data-bind="version.platform">Windows x64</b></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 亮点 ══ -->
+    <section class="section section--tight" id="highlights">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">核心亮点</h2>
+            <p class="section-sub">自瞄、绘制、导航、美化 —— 一体化整合</p>
+          </div>
+          <a class="btn btn--text" href="./features.html">查看完整功能 →</a>
+        </div>
+
+        <div class="grid grid-3" data-list="highlights">
+          <template data-tpl>
+            <a class="card" data-reveal data-item="url" data-item-attr="href">
+              <div class="card__icon" data-item="icon">🎯</div>
+              <h3 class="card__title" data-item="title">亮点</h3>
+              <p class="card__desc" data-item="desc">说明</p>
+            </a>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 下载 ══ -->
+    <section class="section" id="download">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">下载中心</h2>
+            <p class="section-sub">直链下载，解压即用</p>
+          </div>
+          <a class="btn btn--text" href="./download.html">安装说明 →</a>
+        </div>
+
+        <div data-list="downloads">
+          <template data-tpl>
+            <div class="card card--accent" data-reveal>
+              <div class="flex-between wrapx gap-4">
+                <div style="flex:1;min-width:240px">
+                  <div class="flex gap-3" style="align-items:center">
+                    <div class="card__icon" style="margin:0">⬇</div>
+                    <div>
+                      <h3 class="card__title" style="margin:0" data-item="name">AWM 完整包</h3>
+                      <p class="card__desc" data-item="desc">启动器 + 注入器 + 配置，解压即用</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex gap-3 wrapx" style="align-items:center">
+                  <span class="badge badge--cyan" data-item="tag" data-item-if="tag">推荐</span>
+                  <a class="btn btn--primary" data-item="url" data-item-attr="href" target="_blank" rel="noopener noreferrer">前往下载 ⬇</a>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- 游戏本体 -->
+        <div class="card card--accent mt-4" data-reveal>
+          <div class="flex-between wrapx gap-4">
+            <div style="flex:1;min-width:240px">
+              <div class="flex gap-3" style="align-items:center">
+                <div class="card__icon" style="margin:0">🎮</div>
+                <div>
+                  <h3 class="card__title" style="margin:0">游戏本体 · <span data-bind="game.name">超自然</span></h3>
+                  <p class="card__desc" data-bind="game.desc">官方客户端下载入口</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-3 wrapx">
+              <a class="btn btn--primary" href="https://www.chaoziran.com/" data-bind-attr="href:game.official_url" target="_blank" rel="noopener noreferrer">官网下载 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 数据统计 ══ -->
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="card card--flat" data-reveal>
+          <div class="grid grid-4">
+            <div class="stat">
+              <div class="stat__num"><span data-count="26">0</span>+</div>
+              <div class="stat__label">绘制与功能项</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num"><span data-count="60">0</span>+</div>
+              <div class="stat__label">可调选项</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num"><span data-count="8">0</span></div>
+              <div class="stat__label">一级菜单</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num"><span data-count="2">0</span></div>
+              <div class="stat__label">自瞄模式</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 社区 ══ -->
+    <section class="section" id="community">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">购卡与社区</h2>
+            <p class="section-sub">有问题进群问，比翻文档快</p>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card" data-reveal data-shop-soon role="button" tabindex="0">
+            <div class="card__icon">💳</div>
+            <h3 class="card__title" data-bind="shop.name">购卡</h3>
+            <p class="card__desc" data-bind="shop.desc">购卡通道筹备中，请进交流群了解</p>
+            <div class="mt-3"><span class="badge badge--amber">筹备中</span></div>
+          </div>
+
+          <a class="card" data-reveal data-bind-attr="href:community.qq_url" target="_blank" rel="noopener noreferrer">
+            <div class="card__icon">👥</div>
+            <h3 class="card__title">交流群</h3>
+            <p class="card__desc" data-bind="community.qq_label">点击链接加入群聊【古德猫宁】</p>
+            <div class="mt-3"><span class="badge badge--cyan">古德猫宁</span></div>
+          </a>
+        </div>
+      </div>
+    </section>

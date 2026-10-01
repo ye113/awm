@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="AWM">
+  <defs>
+    <linearGradient id="fg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#22d3ee"/>
+      <stop offset="52%"  stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="#070b16"/>
+  <path d="M16 3 L28 10 L28 22 L16 29 L4 22 L4 10 Z"
+        stroke="url(#fg)" stroke-width="1.7" stroke-linejoin="round" fill="rgba(34,211,238,0.07)"/>
+  <!-- A · W · M -->
+  <g stroke="url(#fg)" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M6.2 22.2 L9.2 10.8 L12.2 22.2"/>
+    <line x1="7.5" y1="18.2" x2="10.9" y2="18.2"/>
+    <path d="M13.4 10.8 L15 22.2 L16.8 14.4 L18.6 22.2 L20.2 10.8"/>
+    <path d="M21.6 22.2 L21.6 10.8 L24.2 17.4 L26.8 10.8 L26.8 22.2"/>
+  </g>
+</svg>

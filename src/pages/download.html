@@ -1,0 +1,155 @@
+---
+title: 下载中心 | AWM
+desc: AWM 超自然辅助下载中心 —— 完整包与游戏本体一站直达。
+active: download.html
+---
+    <!-- ══ 页头 ══ -->
+    <section class="page-head">
+      <div class="wrap">
+        <div class="crumb"><a href="./index.html">首页</a><span>/</span>下载中心</div>
+        <h1 class="page-head__title"><span class="grad-text">下载中心</span></h1>
+        <p class="page-head__desc">
+          当前版本 <b data-bind="version.current">0.1.0</b> ·
+          <span data-bind="version.platform">Windows x64</span><br>
+          直链下载，解压到任意目录后用启动器选择游戏进程即可。
+        </p>
+      </div>
+    </section>
+
+    <!-- ══ AWM 本体 ══ -->
+    <section class="section section--tight" id="main">
+      <div class="wrap">
+        <h2 class="group-title">⬇ AWM 本体</h2>
+
+        <div data-list="downloads">
+          <template data-tpl>
+            <div class="card card--accent" data-reveal>
+              <div class="flex-between wrapx gap-4">
+                <div style="flex:1;min-width:240px">
+                  <div class="flex gap-3" style="align-items:center">
+                    <div class="card__icon" style="margin:0">⬇</div>
+                    <div>
+                      <h3 class="card__title" style="margin:0;font-size:19px" data-item="name">AWM 完整包</h3>
+                      <p class="card__desc mt-2" data-item="desc">启动器 + 注入器 + 配置，解压即用</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex gap-3 wrapx" style="align-items:center">
+                  <span class="badge badge--cyan" data-item="tag" data-item-if="tag">推荐</span>
+                  <a class="btn btn--primary btn--lg" data-item="url" data-item-attr="href" target="_blank" rel="noopener noreferrer">前往下载 ⬇</a>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <div class="note mt-5" data-reveal>
+          <span>💡</span>
+          <div>
+            <b>下载完先看这里：</b>压缩包内包含启动器与配置文件。首次运行若被系统拦截，
+            在文件属性里勾选「解除锁定」即可。杀软误报属于常见情况，加入白名单后重试。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 游戏本体 ══ -->
+    <section class="section section--tight" id="game">
+      <div class="wrap">
+        <h2 class="group-title">🎮 游戏本体</h2>
+
+        <div class="card card--accent" data-reveal>
+          <div class="flex-between wrapx gap-4">
+            <div style="flex:1;min-width:260px">
+              <h3 class="card__title" style="font-size:19px" data-bind="game.name">超自然</h3>
+              <p class="card__desc mt-2" data-bind="game.desc">官方客户端下载入口</p>
+              <div class="tag-flow mt-3">
+                <span class="tag">Windows</span>
+                <span class="tag">官方渠道</span>
+                <span class="tag">保持最新</span>
+              </div>
+            </div>
+            <div class="flex gap-3 wrapx">
+              <a class="btn btn--primary btn--lg" href="https://www.chaoziran.com/" data-bind-attr="href:game.official_url" target="_blank" rel="noopener noreferrer">前往官网下载 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 安装步骤 ══ -->
+    <section class="section section--tight" id="install">
+      <div class="wrap">
+        <h2 class="group-title">📋 安装步骤</h2>
+
+        <div class="steps">
+          <div class="step" data-reveal>
+            <div class="step__num">1</div>
+            <div>
+              <div class="step__title">下载并解压</div>
+              <div class="step__desc">把整包解压到一个固定目录，路径建议纯英文，避免中文与空格带来的意外。</div>
+            </div>
+          </div>
+          <div class="step" data-reveal>
+            <div class="step__num">2</div>
+            <div>
+              <div class="step__title">关闭杀软拦截</div>
+              <div class="step__desc">将解压目录加入杀毒软件白名单；若文件带「已锁定」标记，右键属性解除锁定。</div>
+            </div>
+          </div>
+          <div class="step" data-reveal>
+            <div class="step__num">3</div>
+            <div>
+              <div class="step__title">先启动游戏</div>
+              <div class="step__desc">等游戏进入主界面后，再运行启动器，让它能识别到游戏进程。</div>
+            </div>
+          </div>
+          <div class="step" data-reveal>
+            <div class="step__num">4</div>
+            <div>
+              <div class="step__title">运行启动器并注入</div>
+              <div class="step__desc">启动器里选择游戏进程，点击注入；成功后回游戏按 <kbd>Insert</kbd> 呼出菜单。</div>
+            </div>
+          </div>
+          <div class="step" data-reveal>
+            <div class="step__num">5</div>
+            <div>
+              <div class="step__title">配置与保存</div>
+              <div class="step__desc">按需调整功能，点「保存」落盘。下次启动会沿用上次的配置。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 下载相关问题 ══ -->
+    <section class="section section--tight" id="quick-faq">
+      <div class="wrap">
+        <h2 class="group-title">❓ 下载相关问题</h2>
+
+        <div class="acc" data-reveal>
+          <button class="acc__head" type="button" aria-expanded="false">下载后打不开 / 提示缺少文件？<span class="acc__sign"></span></button>
+          <div class="acc__body"><div><div class="acc__inner">
+            通常是解压不完整。请用 7-Zip 或 WinRAR 重新完整解压，不要直接在压缩包里双击运行。
+          </div></div></div>
+        </div>
+
+        <div class="acc" data-reveal>
+          <button class="acc__head" type="button" aria-expanded="false">杀毒软件报毒怎么办？<span class="acc__sign"></span></button>
+          <div class="acc__body"><div><div class="acc__inner">
+            把整个解压目录加入白名单即可。若文件被隔离，先从隔离区恢复再添加白名单。
+          </div></div></div>
+        </div>
+
+        <div class="acc" data-reveal>
+          <button class="acc__head" type="button" aria-expanded="false">怎么更新到新版本？<span class="acc__sign"></span></button>
+          <div class="acc__body"><div><div class="acc__inner">
+            在下载中心重新下载最新整包，覆盖旧目录即可；配置文件会被保留。
+          </div></div></div>
+        </div>
+
+        <div class="tc mt-6">
+          <a class="btn btn--ghost" href="./faq.html">查看完整教程与答疑 →</a>
+        </div>
+      </div>
+    </section>

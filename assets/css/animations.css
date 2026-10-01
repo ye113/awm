@@ -1,0 +1,122 @@
+﻿/* ==========================================================================
+   AWM 站点 · 关键帧动画
+   ========================================================================== */
+
+/* ── 背景 ── */
+@keyframes gridDrift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 56px 56px, 56px 56px; }
+}
+
+@keyframes auroraDrift {
+  0%   { transform: translate3d(-4%, -3%, 0) scale(1);    opacity: 0.85; }
+  50%  { transform: translate3d(3%, 4%, 0)   scale(1.12); opacity: 1; }
+  100% { transform: translate3d(-2%, 5%, 0)  scale(1.05); opacity: 0.78; }
+}
+
+@keyframes scanSweep {
+  from { background-position: 0 -120vh; }
+  to   { background-position: 0 120vh; }
+}
+
+@keyframes hueSlide {
+  from { background-position: 0% center; }
+  to   { background-position: 200% center; }
+}
+
+/* ── 通用脉冲 / 浮动 ── */
+@keyframes softFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+@keyframes breathGlow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes dashRun {
+  to { stroke-dashoffset: -1000; }
+}
+
+/* ── 加载器 ── */
+@keyframes ringGrow {
+  from { transform: scale(0.72); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes logoDraw {
+  from { stroke-dashoffset: var(--len, 520); }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes logoFillIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes charUp {
+  from { opacity: 0; transform: translateY(18px) rotateX(-70deg); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+
+/* ── 加载进度条扫光 ── */
+@keyframes barShine {
+  from { transform: translateX(-120%); }
+  to   { transform: translateX(320%); }
+}
+
+/* ── 页面元素入场 ── */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── 鼠标光晕 ── */
+@keyframes cursorPulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.85; }
+}
+
+/* ── 数字滚动强调 ── */
+@keyframes numFlash {
+  0%   { color: var(--c-cyan); text-shadow: var(--glow-cy); }
+  100% { color: var(--tx-hi); text-shadow: none; }
+}
+
+/* ── 徽章闪烁 ── */
+@keyframes dotBlink {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); }
+  50%      { opacity: 0.6; box-shadow: 0 0 0 7px rgba(52, 211, 153, 0); }
+}
+
+/* ── 滚动跑马灯（公告条） ── */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── 加载完成整体退场 ── */
+@keyframes loaderOut {
+  0%   { opacity: 1; transform: scale(1);    filter: blur(0); }
+  60%  { opacity: 1; transform: scale(1.04); filter: blur(0); }
+  100% { opacity: 0; transform: scale(1.14); filter: blur(14px); }
+}
