@@ -1,0 +1,11 @@
+# AWM — Cloudflare Workers Static Assets
+# 本仓库是纯静态站（根目录 HTML + assets/），不要用 cecil / _site。
+name = "awm"
+compatibility_date = "2026-10-01"
+
+[assets]
+directory = "."
+not_found_handling = "404-page"
+
+[observability]
+enabled = true

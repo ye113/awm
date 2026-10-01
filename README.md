@@ -5,12 +5,25 @@
 
 ---
 
-## 部署（Cloudflare Pages）
+## 部署（Cloudflare）
 
-1. 把本仓库推到 GitHub  
-2. Cloudflare Pages → Connect repo  
-3. **Build command** 留空（或填 `node build.mjs`，仅当你改了 `src/pages/`）  
-4. **Output directory** 填 `/` 或留空（根目录即站点）
+根目录已有现成 HTML，**不要**用自动检测的 Cecil / `_site`（以仓库内 `wrangler.toml` 为准）。
+
+### 方式 A：Workers 静态资源（`npx wrangler deploy`）
+
+仓库已带 `wrangler.toml`（`assets.directory = "."`）。
+
+1. 推送本仓库到 GitHub  
+2. Cloudflare → Workers → 连接仓库  
+3. **Deploy command** 填：`npx wrangler deploy`  
+4. 不要让它自动跑 `npx cecil build`
+
+### 方式 B：Cloudflare Pages
+
+1. Pages → Connect repo  
+2. Framework preset：**None**  
+3. **Build command** 留空（或 `node build.mjs`）  
+4. **Output directory** 填 `/`
 
 日常改链接、版本号、QQ 群：只改 **`assets/js/config.js`** 里的 `RS_DATA`，提交后自动更新。
 

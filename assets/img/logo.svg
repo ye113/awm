@@ -38,15 +38,14 @@
     <line x1="90" y1="64" x2="100" y2="64"/>
   </g>
 
-  <!-- 核心：A · W · M 三字母 -->
+  <!-- 核心：A · W · M（间距统一；M 收进右缘，避免压边） -->
   <g stroke="url(#agrad)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <!-- A -->
-    <path d="M32 86 L42 46 L52 86"/>
-    <line x1="36.5" y1="72" x2="47.5" y2="72"/>
+    <path d="M34 86 L42 46 L50 86 M37.5 72 L46.5 72"/>
     <!-- W -->
-    <path d="M55 46 L60 86 L66 58 L72 86 L77 46"/>
+    <path d="M53 46 L58 86 L63.5 58 L69 86 L74 46"/>
     <!-- M -->
-    <path d="M81 86 L81 46 L89 70 L97 46 L97 86"/>
+    <path d="M77 86 L77 46 L83.5 70 L90 46 L90 86"/>
   </g>
 
   <!-- 核心光点 -->

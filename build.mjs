@@ -53,10 +53,11 @@ const LOADER = `
           <line x1="30" y1="64" x2="43" y2="64"/><line x1="85" y1="64" x2="98" y2="64"/>
         </g>
         <g class="logo-stroke" style="--len:420; animation-delay:.72s">
-          <path d="M32 86 L42 46 L52 86"/>
-          <path d="M36.5 72 L47.5 72"/>
-          <path d="M55 46 L60 86 L66 58 L72 86 L77 46"/>
-          <path d="M81 86 L81 46 L89 70 L97 46 L97 86"/>
+          <path d="M34 86 L42 46"/>
+          <path d="M50 86 L42 46"/>
+          <path d="M37.5 72 L46.5 72"/>
+          <path d="M53 46 L58 86 L63.5 58 L69 86 L74 46"/>
+          <path d="M77 86 L77 46 L83.5 70 L90 46 L90 86"/>
         </g>
         <circle class="logo-solid" cx="64" cy="98" r="3" fill="#22d3ee"/>
       </svg>
