@@ -35,13 +35,14 @@ window.RS_DATA = {
     platform: 'Windows 10 / 11 · x64'
   },
 
-  /* 只有一个下载入口，蓝奏直链，无需提取码 */
+  /* 蓝奏云文件夹：后续新版本直接丢进这个文件夹即可，链接不用改 */
   downloads: [
     {
       id: 'awm-full',
       name: 'AWM 完整包',
       desc: '启动器 + 注入器 + 配置，解压即用',
-      url: 'https://wwbeq.lanzoub.com/ibrW34ajj2sd',
+      url: 'https://wwbeq.lanzoub.com/b019w772sd',
+      pwd: '123',
       tag: '推荐',
       primary: true
     }
