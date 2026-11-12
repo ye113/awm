@@ -16,7 +16,7 @@
       author: 'AWM 开发组',
       footer_note: '愿你我惺惺相惜'
     },
-    version: { current: '0.1.0', date: '', size: '', platform: 'Windows 10 / 11 · x64' },
+    version: { current: '0.0.5', date: '', size: '', platform: 'Windows 10 / 11 · x64' },
     downloads: [],
     game: {
       name: '超自然',

@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    AWM 站点 · 基础层
    reset / 排版 / 背景场 / 通用工具类
    ========================================================================== */
@@ -15,8 +15,8 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--ff);
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: 15.5px;
+  line-height: 1.78;
   color: var(--tx);
   background: var(--bg-void);
   overflow-x: hidden;
@@ -25,25 +25,48 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 加载中：彻底锁滚动，避免穿透 */
-body.is-booting { overflow: hidden; height: 100vh; }
+/* 加载中只锁滚动；高度保持自然，JS 失效时页面不会被锁死 */
+body.is-booting { overflow: hidden; }
 
 h1, h2, h3, h4, h5 {
   margin: 0;
   color: var(--tx-hi);
+  font-family: var(--ff-display);
   font-weight: 700;
-  line-height: 1.28;
-  letter-spacing: -0.015em;
+  line-height: 1.24;
+  letter-spacing: -0.01em;
 }
 
 p { margin: 0; }
 
 a {
-  color: var(--c-cyan);
+  color: var(--c-amber);
   text-decoration: none;
   transition: color var(--t-fast) var(--ease-out);
 }
-a:hover { color: var(--c-violet); }
+a:hover { color: var(--c-amber-hi); }
+
+/* 键盘焦点：深色底上始终可见 */
+:focus-visible {
+  outline: 2px solid var(--c-amber);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* 跳到主内容（屏幕阅读器/键盘用户） */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 10000;
+  padding: 10px 16px;
+  background: var(--c-amber);
+  color: #05070f;
+  font-weight: 700;
+  border-radius: var(--r-sm);
+  transition: top var(--t-fast) var(--ease-out);
+}
+.skip-link:focus { top: 12px; color: #05070f; }
 
 img, svg { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; }
@@ -74,9 +97,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(1200px 620px at 50% -12%, rgba(34, 211, 238, 0.10), transparent 62%),
-    radial-gradient(1000px 560px at 88% 8%,   rgba(129, 140, 248, 0.10), transparent 60%),
-    radial-gradient(900px 520px  at 6% 82%,   rgba(244, 114, 182, 0.07), transparent 62%),
+    radial-gradient(1100px 620px at 22% -8%, rgba(34, 211, 238, 0.055), transparent 62%),
+    radial-gradient(900px 520px at 88% 12%, rgba(129, 140, 248, 0.045), transparent 64%),
     var(--bg-void);
 }
 
@@ -88,23 +110,21 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   background-image:
     linear-gradient(rgba(129, 140, 248, 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(129, 140, 248, 0.055) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 78% 62% at 50% 38%, #000 12%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 78% 62% at 50% 38%, #000 12%, transparent 78%);
-  animation: gridDrift 34s linear infinite;
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 82% 66% at 50% 40%, #000 8%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse 82% 66% at 50% 40%, #000 8%, transparent 76%);
+  opacity: 0.65;
 }
 
 /* 极光流动 */
 .bg-field::after {
   content: "";
   position: absolute;
-  inset: -25%;
-  background:
-    radial-gradient(closest-side, rgba(34, 211, 238, 0.16), transparent) 18% 24% / 42% 42% no-repeat,
-    radial-gradient(closest-side, rgba(129, 140, 248, 0.15), transparent) 78% 32% / 46% 46% no-repeat,
-    radial-gradient(closest-side, rgba(244, 114, 182, 0.12), transparent) 52% 88% / 40% 40% no-repeat;
-  filter: blur(66px);
-  animation: auroraDrift 26s var(--ease-io) infinite alternate;
+  inset: -10%;
+  background: radial-gradient(closest-side, rgba(34, 211, 238, 0.07), transparent) 30% 20% / 55% 55% no-repeat;
+  filter: blur(70px);
+  animation: auroraDrift 40s var(--ease-io) infinite alternate;
+  opacity: 0.7;
 }
 
 /* 顶部扫光条 */
@@ -113,10 +133,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.5;
-  background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.05), transparent);
-  background-size: 100% 220px;
-  animation: scanSweep 9s linear infinite;
+  opacity: 0.18;
+  background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.04), transparent);
+  background-size: 100% 320px;
+  animation: scanSweep 22s linear infinite;
 }
 
 /* ==========================================================================
@@ -245,16 +265,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ── 进场动画（IntersectionObserver 触发） ── */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(26px);
+  transform: translateY(18px);
   transition:
     opacity   var(--t-slow) var(--ease-out),
     transform var(--t-slow) var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 [data-reveal].is-in {
   opacity: 1;
   transform: none;
+}
+/* 减少动画偏好下不做位移 */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { transform: none; }
 }
 
 /* 无动画偏好：全部直接显示 */

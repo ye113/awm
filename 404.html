@@ -4,31 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#04060d">
+<meta name="color-scheme" content="dark light">
 <title>页面走丢了 | AWM</title>
 <meta name="description" content="找不到这个页面 —— 返回首页或用下面的入口继续浏览。">
+<link rel="canonical" href="https://awm.pages.dev/404.html">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="AWM">
 <meta property="og:title" content="页面走丢了 | AWM">
 <meta property="og:description" content="找不到这个页面 —— 返回首页或用下面的入口继续浏览。">
-<meta property="og:image" content="./assets/img/logo.svg">
+<meta property="og:url" content="https://awm.pages.dev/404.html">
+<meta property="og:image" content="https://awm.pages.dev/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AWM 超自然辅助">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="页面走丢了 | AWM">
+<meta name="twitter:description" content="找不到这个页面 —— 返回首页或用下面的入口继续浏览。">
+<meta name="twitter:image" content="https://awm.pages.dev/assets/img/og-cover.png">
 
 <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="./assets/img/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="./assets/css/variables.css" as="style">
+<link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+<link rel="preload" href="./assets/fonts/Inter-400_800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/ChakraPetch-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/ChakraPetch-700.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="./assets/css/variables.css">
-<link rel="stylesheet" href="./assets/css/base.css">
-<link rel="stylesheet" href="./assets/css/animations.css">
-<link rel="stylesheet" href="./assets/css/loader.css">
-<link rel="stylesheet" href="./assets/css/components.css">
-<link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/app.css">
 
+<noscript><style>
+  #boot-loader { display: none !important; }
+  body.is-booting { overflow: auto; }
+  #app { opacity: 1 !important; }
+</style></noscript>
 </head>
 
 <body class="is-booting">
+<a class="skip-link" href="#main-content">跳到主内容</a>
 
 <!-- 首次访问判定：在首帧前同步打标记，跳过动画时不会闪一下淡入 -->
 <script>
@@ -44,7 +55,7 @@
 
 <!-- ═══ 启动加载动画 ═══ -->
 
-<div id="boot-loader" role="status" aria-live="polite" aria-label="站点加载中">
+<div id="boot-loader" aria-hidden="true">
   <div class="boot-stage">
     <div class="boot-ring" aria-hidden="true"></div>
     <div class="boot-ring boot-ring--inner" aria-hidden="true"></div>
@@ -78,19 +89,20 @@
     <div class="boot-floor" aria-hidden="true"></div>
   </div>
   <div class="boot-wordmark" id="boot-wordmark" aria-hidden="true"></div>
-  <div class="boot-sub" aria-hidden="true">Preternatural Assistant</div>
+  <div class="boot-sub" aria-hidden="true">超自然辅助</div>
   <div class="boot-progress">
     <div class="boot-bar">
       <div class="boot-bar__fill" id="boot-bar-fill"></div>
       <div class="boot-bar__shine" aria-hidden="true"></div>
     </div>
     <div class="boot-meta">
-      <span>Loading Resources</span>
+      <span>正在载入</span>
       <span class="boot-meta__pct" id="boot-pct">000%</span>
     </div>
   </div>
   <div class="boot-log" id="boot-log" aria-hidden="true"></div>
 </div>
+<div class="sr-only" role="status" aria-live="polite">页面正在载入</div>
 
 <!-- ═══ 页面主体 ═══ -->
 <div id="app">
@@ -111,6 +123,7 @@
         <a class="nav__link" href="./index.html">首页</a>
         <a class="nav__link" href="./download.html">下载</a>
         <a class="nav__link" href="./features.html">功能</a>
+        <a class="nav__link" href="./changelog.html">更新日志</a>
         <a class="nav__link" href="./faq.html">教程与答疑</a>
       </nav>
       <div class="nav__actions">
@@ -125,6 +138,7 @@
     <a class="nav__link" href="./index.html">首页</a>
     <a class="nav__link" href="./download.html">下载</a>
     <a class="nav__link" href="./features.html">功能</a>
+    <a class="nav__link" href="./changelog.html">更新日志</a>
     <a class="nav__link" href="./faq.html">教程与答疑</a>
     <a class="btn btn--primary btn--block" href="./download.html">立即下载</a>
   </div>
@@ -132,13 +146,13 @@
   <!-- 公告条 -->
   <div class="announce" data-bind-hide-empty>
     <div class="announce__inner">
-      <span class="announce__icon">📢</span>
+      <span class="announce__icon" aria-hidden="true"></span>
       <span class="announce__text" data-bind="site.announcement">公告</span>
       <button class="announce__close" type="button" aria-label="关闭公告">✕</button>
     </div>
   </div>
 
-  <main>
+  <main id="main-content">
     <section class="page-head" style="padding-top:calc(var(--sp-8) + 40px)">
       <div class="wrap tc">
         <div style="font-size:clamp(72px,16vw,140px);font-weight:800;line-height:1;letter-spacing:-0.04em"
@@ -151,7 +165,7 @@
         </p>
 
         <div class="hero__cta mt-6">
-          <a class="btn btn--primary btn--lg" href="./index.html">← 返回首页</a>
+          <a class="btn btn--primary btn--lg" href="./index.html">返回首页</a>
           <a class="btn btn--ghost btn--lg" href="./download.html">下载中心</a>
         </div>
       </div>
@@ -161,17 +175,14 @@
       <div class="wrap">
         <div class="grid grid-3">
           <a class="card" href="./features.html" data-reveal>
-            <div class="card__icon">📋</div>
             <h3 class="card__title">功能介绍</h3>
             <p class="card__desc">自瞄 / 绘制 / 内存 / 导航全覆盖。</p>
           </a>
           <a class="card" href="./download.html" data-reveal>
-            <div class="card__icon">⬇</div>
             <h3 class="card__title">下载中心</h3>
-            <p class="card__desc">完整包与启动器，当前版本 <span data-bind="version.current">0.1.0</span>。</p>
+            <p class="card__desc">完整包与启动器，当前版本 <span data-bind="version.current">0.0.5</span>。</p>
           </a>
           <a class="card" href="./faq.html" data-reveal>
-            <div class="card__icon">❓</div>
             <h3 class="card__title">教程与答疑</h3>
             <p class="card__desc">安装、注入、热键与常见故障排查。</p>
           </a>
@@ -198,6 +209,7 @@
           <a class="footer__link" href="./index.html">首页</a>
           <a class="footer__link" href="./download.html">下载中心</a>
           <a class="footer__link" href="./features.html">功能介绍</a>
+          <a class="footer__link" href="./changelog.html">更新日志</a>
         </div>
 
         <div>
@@ -215,7 +227,7 @@
 
       <div class="footer__bottom">
         <span>© <span data-year>2026</span> <span data-bind="site.author">AWM 开发组</span> · <span data-bind="site.footer_note">愿你我惺惺相惜</span></span>
-        <span class="mono xs faint">v<span data-bind="version.current">0.1.0</span></span>
+        <span class="mono xs faint">v<span data-bind="version.current">0.0.5</span></span>
       </div>
     </div>
   </footer>
@@ -227,5 +239,8 @@
 <script src="./assets/js/config-loader.js"></script>
 <script src="./assets/js/loader.js"></script>
 <script src="./assets/js/main.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AWM 超自然辅助","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows 10, Windows 11","softwareVersion":"0.0.5","url":"https://awm.pages.dev/","downloadUrl":"https://awm.pages.dev/download.html"}
+</script>
 </body>
 </html>

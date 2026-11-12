@@ -6,9 +6,9 @@
       <stop offset="100%" stop-color="#f472b6"/>
     </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="7" fill="#070b16"/>
+  <rect width="32" height="32" rx="7" fill="#04060d"/>
   <path d="M16 3 L28 10 L28 22 L16 29 L4 22 L4 10 Z"
-        stroke="url(#fg)" stroke-width="1.7" stroke-linejoin="round" fill="rgba(34,211,238,0.07)"/>
+        stroke="url(#fg)" stroke-width="1.7" stroke-linejoin="round" fill="rgba(34,211,238,0.08)"/>
   <!-- A · W · M（间距统一；M 收进右缘，避免压边） -->
   <g stroke="url(#fg)" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <path d="M6.4 22.2 L9.0 10.8 L11.6 22.2 M7.55 18.2 L10.45 18.2"/>

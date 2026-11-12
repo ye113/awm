@@ -1,0 +1,8 @@
+# 只发布成品，不把源码/构建脚本/说明暴露成静态资源
+src/
+build.mjs
+README.md
+.gitignore
+.git/
+.codex/
+.vscode/

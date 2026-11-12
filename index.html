@@ -4,31 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#04060d">
+<meta name="color-scheme" content="dark light">
 <title>AWM | 超自然辅助社区</title>
 <meta name="description" content="AWM 超自然辅助 —— 下载、功能与社区一站直达。自研预测、静默辅助、绘制导航。">
+<link rel="canonical" href="https://awm.pages.dev/">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="AWM">
 <meta property="og:title" content="AWM | 超自然辅助社区">
 <meta property="og:description" content="AWM 超自然辅助 —— 下载、功能与社区一站直达。自研预测、静默辅助、绘制导航。">
-<meta property="og:image" content="./assets/img/logo.svg">
+<meta property="og:url" content="https://awm.pages.dev/">
+<meta property="og:image" content="https://awm.pages.dev/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AWM 超自然辅助">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AWM | 超自然辅助社区">
+<meta name="twitter:description" content="AWM 超自然辅助 —— 下载、功能与社区一站直达。自研预测、静默辅助、绘制导航。">
+<meta name="twitter:image" content="https://awm.pages.dev/assets/img/og-cover.png">
 
 <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="./assets/img/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="./assets/css/variables.css" as="style">
+<link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+<link rel="preload" href="./assets/fonts/Inter-400_800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/ChakraPetch-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/ChakraPetch-700.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="./assets/css/variables.css">
-<link rel="stylesheet" href="./assets/css/base.css">
-<link rel="stylesheet" href="./assets/css/animations.css">
-<link rel="stylesheet" href="./assets/css/loader.css">
-<link rel="stylesheet" href="./assets/css/components.css">
-<link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/app.css">
 
+<noscript><style>
+  #boot-loader { display: none !important; }
+  body.is-booting { overflow: auto; }
+  #app { opacity: 1 !important; }
+</style></noscript>
 </head>
 
 <body class="is-booting">
+<a class="skip-link" href="#main-content">跳到主内容</a>
 
 <!-- 首次访问判定：在首帧前同步打标记，跳过动画时不会闪一下淡入 -->
 <script>
@@ -44,7 +55,7 @@
 
 <!-- ═══ 启动加载动画 ═══ -->
 
-<div id="boot-loader" role="status" aria-live="polite" aria-label="站点加载中">
+<div id="boot-loader" aria-hidden="true">
   <div class="boot-stage">
     <div class="boot-ring" aria-hidden="true"></div>
     <div class="boot-ring boot-ring--inner" aria-hidden="true"></div>
@@ -78,19 +89,20 @@
     <div class="boot-floor" aria-hidden="true"></div>
   </div>
   <div class="boot-wordmark" id="boot-wordmark" aria-hidden="true"></div>
-  <div class="boot-sub" aria-hidden="true">Preternatural Assistant</div>
+  <div class="boot-sub" aria-hidden="true">超自然辅助</div>
   <div class="boot-progress">
     <div class="boot-bar">
       <div class="boot-bar__fill" id="boot-bar-fill"></div>
       <div class="boot-bar__shine" aria-hidden="true"></div>
     </div>
     <div class="boot-meta">
-      <span>Loading Resources</span>
+      <span>正在载入</span>
       <span class="boot-meta__pct" id="boot-pct">000%</span>
     </div>
   </div>
   <div class="boot-log" id="boot-log" aria-hidden="true"></div>
 </div>
+<div class="sr-only" role="status" aria-live="polite">页面正在载入</div>
 
 <!-- ═══ 页面主体 ═══ -->
 <div id="app">
@@ -108,9 +120,10 @@
         <span class="brand__tag">超自然社区</span>
       </a>
       <nav class="nav__links" aria-label="主导航">
-        <a class="nav__link is-active" href="./index.html">首页</a>
+        <a class="nav__link is-active" href="./index.html" aria-current="page">首页</a>
         <a class="nav__link" href="./download.html">下载</a>
         <a class="nav__link" href="./features.html">功能</a>
+        <a class="nav__link" href="./changelog.html">更新日志</a>
         <a class="nav__link" href="./faq.html">教程与答疑</a>
       </nav>
       <div class="nav__actions">
@@ -125,6 +138,7 @@
     <a class="nav__link" href="./index.html">首页</a>
     <a class="nav__link" href="./download.html">下载</a>
     <a class="nav__link" href="./features.html">功能</a>
+    <a class="nav__link" href="./changelog.html">更新日志</a>
     <a class="nav__link" href="./faq.html">教程与答疑</a>
     <a class="btn btn--primary btn--block" href="./download.html">立即下载</a>
   </div>
@@ -132,41 +146,52 @@
   <!-- 公告条 -->
   <div class="announce" data-bind-hide-empty>
     <div class="announce__inner">
-      <span class="announce__icon">📢</span>
+      <span class="announce__icon" aria-hidden="true"></span>
       <span class="announce__text" data-bind="site.announcement">公告</span>
       <button class="announce__close" type="button" aria-label="关闭公告">✕</button>
     </div>
   </div>
 
-  <main>
+  <main id="main-content">
     <!-- ══ Hero ══ -->
     <section class="hero">
       <div class="hero__glow" aria-hidden="true"></div>
-      <div class="wrap">
-        <img class="hero__logo" src="./assets/img/logo.svg" alt="AWM Logo" width="132" height="132">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <h1 class="hero__title">
+            <span class="grad-text">AWM</span>
+            <span class="hero__title-cn">超自然辅助</span>
+          </h1>
 
-        <div class="eyebrow flex-center">Preternatural Assistant</div>
+          <p class="hero__desc">
+            <span data-bind="site.full_name">AWM 超自然辅助</span> ·
+            <span data-bind="site.tagline">下载 · 功能 · 社区，一站直达</span>
+          </p>
 
-        <h1 class="hero__title">
-          <span class="grad-text" data-bind="site.name">AWM</span>
-        </h1>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="./download.html">下载 AWM</a>
+            <a class="btn btn--ghost btn--lg" href="./features.html">查看功能介绍</a>
+            <a class="btn btn--text" href="https://www.chaoziran.com/" data-bind-attr="href:game.official_url" target="_blank" rel="noopener noreferrer">下载游戏本体</a>
+          </div>
 
-        <p class="hero__desc">
-          <span data-bind="site.full_name">AWM 超自然辅助</span> ·
-          <span data-bind="site.tagline">下载 · 功能 · 社区，一站直达</span>
-        </p>
-
-        <div class="hero__cta">
-          <a class="btn btn--primary btn--lg" href="./download.html"><span>⬇</span> 下载 AWM</a>
-          <a class="btn btn--ghost btn--lg" href="./features.html">查看功能介绍</a>
-          <a class="btn btn--text" href="https://www.chaoziran.com/" data-bind-attr="href:game.official_url" target="_blank" rel="noopener noreferrer">下载游戏本体 →</a>
+          <div class="hero__meta">
+            <a class="ver-badge" href="./changelog.html" title="查看更新日志"><span class="dot"></span> 当前版本 <strong data-bind="version.current">0.0.5</strong></a>
+            <span>更新于 <b data-bind="version.date">—</b></span>
+            <span><b data-bind="version.platform">Windows x64</b></span>
+          </div>
         </div>
 
-        <div class="hero__meta">
-          <span class="ver-badge"><span class="dot"></span> 当前版本 <strong data-bind="version.current">0.1.0</strong></span>
-          <span>更新于 <b data-bind="version.date">—</b></span>
-          <span><b data-bind="version.platform">Windows x64</b></span>
-        </div>
+        <figure class="hero__shot">
+          <a class="hero__shot-frame" href="./features.html#draw" aria-label="查看绘制功能实机截图">
+            <picture>
+              <source type="image/webp" srcset="./assets/img/features/draw-player.webp">
+              <img src="./assets/img/features/draw-player.png"
+                   alt="游戏内绘制效果：方框、骨骼、信息面板与对局列表"
+                   width="1348" height="844" fetchpriority="high">
+            </picture>
+          </a>
+          <figcaption><span class="hero__shot-tag">实机截图 · 绘制</span>方框、骨骼、信息面板与对局列表，直接在游戏内绘制</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -178,13 +203,12 @@
             <h2 class="section-title">核心亮点</h2>
             <p class="section-sub">自瞄、绘制、导航、美化 —— 一体化整合</p>
           </div>
-          <a class="btn btn--text" href="./features.html">查看完整功能 →</a>
+          <a class="btn btn--text" href="./features.html">查看完整功能</a>
         </div>
 
         <div class="grid grid-3" data-list="highlights">
           <template data-tpl>
-            <a class="card" data-reveal data-item="url" data-item-attr="href">
-              <div class="card__icon" data-item="icon">🎯</div>
+            <a class="card card--link" data-reveal data-item="url" data-item-attr="href">
               <h3 class="card__title" data-item="title">亮点</h3>
               <p class="card__desc" data-item="desc">说明</p>
             </a>
@@ -201,7 +225,7 @@
             <h2 class="section-title">下载中心</h2>
             <p class="section-sub">直链下载，解压即用</p>
           </div>
-          <a class="btn btn--text" href="./download.html">安装说明 →</a>
+          <a class="btn btn--text" href="./download.html">安装说明</a>
         </div>
 
         <div data-list="downloads">
@@ -209,13 +233,8 @@
             <div class="card card--accent" data-reveal>
               <div class="flex-between wrapx gap-4">
                 <div style="flex:1;min-width:240px">
-                  <div class="flex gap-3" style="align-items:center">
-                    <div class="card__icon" style="margin:0">⬇</div>
-                    <div>
-                      <h3 class="card__title" style="margin:0" data-item="name">AWM 完整包</h3>
-                      <p class="card__desc" data-item="desc">启动器 + 注入器 + 配置，解压即用</p>
-                    </div>
-                  </div>
+                  <h3 class="card__title" style="margin:0" data-item="name">AWM 完整包</h3>
+                  <p class="card__desc mt-2" data-item="desc">启动器 + 注入器 + 配置，解压即用</p>
                 </div>
                 <div class="flex gap-3 wrapx" style="align-items:center">
                   <span class="badge badge--cyan" data-item="tag" data-item-if="tag">推荐</span>
@@ -223,7 +242,7 @@
                     提取码 <b data-item="pwd">123</b>
                     <button type="button" class="code-box__copy" data-item="pwd" data-item-attr="data-copy">复制</button>
                   </span>
-                  <a class="btn btn--primary" data-item="url" data-item-attr="href" target="_blank" rel="noopener noreferrer">前往下载 ⬇</a>
+                  <a class="btn btn--primary" data-item="url" data-item-attr="href" target="_blank" rel="noopener noreferrer">前往下载</a>
                 </div>
               </div>
             </div>
@@ -234,43 +253,36 @@
         <div class="card card--accent mt-4" data-reveal>
           <div class="flex-between wrapx gap-4">
             <div style="flex:1;min-width:240px">
-              <div class="flex gap-3" style="align-items:center">
-                <div class="card__icon" style="margin:0">🎮</div>
-                <div>
-                  <h3 class="card__title" style="margin:0">游戏本体 · <span data-bind="game.name">超自然</span></h3>
-                  <p class="card__desc" data-bind="game.desc">官方客户端下载入口</p>
-                </div>
-              </div>
+              <h3 class="card__title" style="margin:0">游戏本体 · <span data-bind="game.name">超自然</span></h3>
+              <p class="card__desc mt-2" data-bind="game.desc">官方客户端下载入口</p>
             </div>
             <div class="flex gap-3 wrapx">
-              <a class="btn btn--primary" href="https://www.chaoziran.com/" data-bind-attr="href:game.official_url" target="_blank" rel="noopener noreferrer">官网下载 →</a>
+              <a class="btn btn--primary" href="https://www.chaoziran.com/" data-bind-attr="href:game.official_url" target="_blank" rel="noopener noreferrer">官网下载</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ 数据统计 ══ -->
+    <!-- ══ 数据统计（去卡片化，靠分隔线成列） ══ -->
     <section class="section section--tight">
       <div class="wrap">
-        <div class="card card--flat" data-reveal>
-          <div class="grid grid-4">
-            <div class="stat">
-              <div class="stat__num"><span data-count="26">0</span>+</div>
-              <div class="stat__label">绘制与功能项</div>
-            </div>
-            <div class="stat">
-              <div class="stat__num"><span data-count="60">0</span>+</div>
-              <div class="stat__label">可调选项</div>
-            </div>
-            <div class="stat">
-              <div class="stat__num"><span data-count="8">0</span></div>
-              <div class="stat__label">一级菜单</div>
-            </div>
-            <div class="stat">
-              <div class="stat__num"><span data-count="2">0</span></div>
-              <div class="stat__label">自瞄模式</div>
-            </div>
+        <div class="stats-strip" data-reveal>
+          <div class="stat">
+            <div class="stat__num"><span data-count="26">0</span>+</div>
+            <div class="stat__label">绘制与功能项</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num"><span data-count="60">0</span>+</div>
+            <div class="stat__label">可调选项</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num"><span data-count="8">0</span></div>
+            <div class="stat__label">一级菜单</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num"><span data-count="2">0</span></div>
+            <div class="stat__label">自瞄模式</div>
           </div>
         </div>
       </div>
@@ -287,15 +299,13 @@
         </div>
 
         <div class="grid grid-2">
-          <div class="card" data-reveal data-shop-soon role="button" tabindex="0">
-            <div class="card__icon">💳</div>
+          <div class="card card--link" data-reveal data-shop-soon role="button" tabindex="0">
             <h3 class="card__title" data-bind="shop.name">购卡</h3>
             <p class="card__desc" data-bind="shop.desc">购卡通道筹备中，请进交流群了解</p>
             <div class="mt-3"><span class="badge badge--amber">筹备中</span></div>
           </div>
 
-          <a class="card" data-reveal data-bind-attr="href:community.qq_url" target="_blank" rel="noopener noreferrer">
-            <div class="card__icon">👥</div>
+          <a class="card card--link" data-reveal data-bind-attr="href:community.qq_url" target="_blank" rel="noopener noreferrer">
             <h3 class="card__title">交流群</h3>
             <p class="card__desc" data-bind="community.qq_label">点击链接加入群聊【古德猫宁】</p>
             <div class="mt-3"><span class="badge badge--cyan">古德猫宁</span></div>
@@ -323,6 +333,7 @@
           <a class="footer__link" href="./index.html">首页</a>
           <a class="footer__link" href="./download.html">下载中心</a>
           <a class="footer__link" href="./features.html">功能介绍</a>
+          <a class="footer__link" href="./changelog.html">更新日志</a>
         </div>
 
         <div>
@@ -340,7 +351,7 @@
 
       <div class="footer__bottom">
         <span>© <span data-year>2026</span> <span data-bind="site.author">AWM 开发组</span> · <span data-bind="site.footer_note">愿你我惺惺相惜</span></span>
-        <span class="mono xs faint">v<span data-bind="version.current">0.1.0</span></span>
+        <span class="mono xs faint">v<span data-bind="version.current">0.0.5</span></span>
       </div>
     </div>
   </footer>
@@ -352,5 +363,8 @@
 <script src="./assets/js/config-loader.js"></script>
 <script src="./assets/js/loader.js"></script>
 <script src="./assets/js/main.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AWM 超自然辅助","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows 10, Windows 11","softwareVersion":"0.0.5","url":"https://awm.pages.dev/","downloadUrl":"https://awm.pages.dev/download.html"}
+</script>
 </body>
 </html>

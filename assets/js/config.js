@@ -10,8 +10,8 @@ window.RS_CONFIG = {
 
   /* 载入动画：'once' | true | false */
   loader: 'once',
-  loaderMinMs: 2050,
-  loaderMaxMs: 6000,
+  loaderMinMs: 650,   // 只用来避免 loader 闪一下；首屏内容本身不再被遮住
+  loaderMaxMs: 5000,
 
   cursorFX: true,
   countUp: true
@@ -29,9 +29,9 @@ window.RS_DATA = {
   },
 
   version: {
-    current: '0.1.0',
-    date: '2026-10-01',
-    size: '11.2 MB',
+    current: '0.0.5',
+    date: '2026-11-12',
+    size: '19.0 MB',
     platform: 'Windows 10 / 11 · x64'
   },
 

@@ -24,7 +24,7 @@
   <!-- 六边外框 -->
   <path d="M64 8 L112 36 L112 92 L64 120 L16 92 L16 36 Z"
         stroke="url(#agrad)" stroke-width="3" stroke-linejoin="round"
-        fill="rgba(10,16,32,0.55)"/>
+        fill="rgba(17,20,25,0.72)"/>
 
   <!-- 内层六边 -->
   <path d="M64 22 L100 43 L100 85 L64 106 L28 85 L28 43 Z"

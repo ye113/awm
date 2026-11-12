@@ -46,6 +46,7 @@ python -m http.server 8899
 | 想改什么 | 改哪里 |
 |---|---|
 | 版本号 / 下载链接 / QQ / 购卡 | `assets/js/config.js` → `RS_DATA` |
+| 更新日志 | `src/data/changelog.json`（改完 `node build.mjs`） |
 | 功能页截图 | `assets/img/features/` 同名替换 |
 | 页面结构 / 文案布局 | `src/pages/*.html` 后跑 `node build.mjs` |
 | 配色 | `assets/css/variables.css` |
@@ -84,8 +85,23 @@ node build.mjs --watch   # 监听自动重建
 │   │   └── main.js
 │   └── img/
 ├── src/pages/               ← 页面源文件
+├── src/data/changelog.json  ← 更新日志数据（发版时在这里加一条）
 └── build.mjs                ← 可选：拼装公共导航/页脚
 ```
+
+---
+
+## 发版 / 更新日志流程
+
+1. 改 `assets/js/config.js`：`version.current` / `date` / `size`
+2. 在 `src/data/changelog.json` 的 `entries` 数组**顶部**加一条：
+   ```json
+   { "version": "0.0.6", "date": "2026-11-20", "title": "本版标题",
+     "items": [ { "type": "新增", "text": "..." }, { "type": "修复", "text": "..." } ] }
+   ```
+   `type` 可用：**新增 / 优化 / 修复 / 安全**
+3. `node build.mjs`（会顺带生成 changelog.html 与 sitemap）
+4. 部署。构建时会校验最新日志版本与 `config.js` 版本是否一致，不一致会提示。
 
 ---
 

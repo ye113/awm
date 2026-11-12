@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    AWM 站点 · 组件层
    按钮 / 卡片 / 徽章 / 导航 / 公告 / 下载 / 表格 / 手风琴 / 页脚
    ========================================================================== */
@@ -197,8 +197,8 @@
 }
 .badge--cyan  { border-color: rgba(34, 211, 238, 0.42);  color: var(--c-cyan);   background: rgba(34, 211, 238, 0.1); }
 .badge--pink  { border-color: rgba(244, 114, 182, 0.42); color: var(--c-pink);   background: rgba(244, 114, 182, 0.1); }
-.badge--green { border-color: rgba(52, 211, 153, 0.42);  color: var(--c-green);  background: rgba(52, 211, 153, 0.1); }
-.badge--amber { border-color: rgba(251, 191, 36, 0.42);  color: var(--c-amber);  background: rgba(251, 191, 36, 0.1); }
+.badge--green { border-color: rgba(111, 191, 139, 0.42);  color: var(--c-green);  background: rgba(111, 191, 139, 0.1); }
+.badge--amber { border-color: rgba(34, 211, 238, 0.42);  color: var(--c-amber);  background: rgba(34, 211, 238, 0.1); }
 
 /* 在线状态点 */
 .dot {
@@ -251,7 +251,7 @@
     backdrop-filter var(--t-mid);
 }
 .nav.is-stuck {
-  background: rgba(6, 10, 20, 0.82);
+  background: rgba(4, 6, 13, 0.82);
   border-bottom-color: var(--line);
   backdrop-filter: blur(18px) saturate(1.5);
   -webkit-backdrop-filter: blur(18px) saturate(1.5);
@@ -547,9 +547,9 @@
   align-items: center;
   gap: 8px;
   padding: 5px 6px 5px 13px;
-  border: 1px dashed rgba(251, 191, 36, 0.45);
+  border: 1px dashed rgba(34, 211, 238, 0.45);
   border-radius: var(--r-sm);
-  background: rgba(251, 191, 36, 0.07);
+  background: rgba(34, 211, 238, 0.07);
   font-family: var(--ff-mono);
   font-size: 13px;
   color: var(--c-amber);
@@ -558,15 +558,15 @@
   border: 0;
   border-radius: var(--r-xs);
   padding: 3px 9px;
-  background: rgba(251, 191, 36, 0.18);
+  background: rgba(34, 211, 238, 0.18);
   color: var(--c-amber);
   font-size: 11.5px;
   font-family: var(--ff);
   cursor: pointer;
   transition: all var(--t-fast) var(--ease-out);
 }
-.code-box__copy:hover { background: rgba(251, 191, 36, 0.32); }
-.code-box__copy.is-copied { background: rgba(52, 211, 153, 0.25); color: var(--c-green); }
+.code-box__copy:hover { background: rgba(34, 211, 238, 0.32); }
+.code-box__copy.is-copied { background: rgba(111, 191, 139, 0.25); color: var(--c-green); }
 
 /* ==========================================================================
    8. 功能列表（带编号）
@@ -717,7 +717,7 @@
   color: var(--tx-dim);
   line-height: 1.72;
 }
-.note--warn { border-left-color: var(--c-amber); background: rgba(251, 191, 36, 0.07); }
+.note--warn { border-left-color: var(--c-amber); background: rgba(34, 211, 238, 0.07); }
 .note b { color: var(--tx-hi); }
 
 .tbl-wrap {
@@ -861,7 +861,7 @@ kbd {
   padding: 11px 20px;
   border: 1px solid var(--line-hi);
   border-radius: var(--r-pill);
-  background: rgba(12, 18, 34, 0.95);
+  background: rgba(7, 11, 22, 0.95);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--shadow-card), var(--glow-vi);
@@ -871,8 +871,8 @@ kbd {
   white-space: nowrap;
 }
 .toast.is-out { animation: fadeIn 0.3s var(--ease-out) reverse forwards; }
-.toast--ok   { border-color: rgba(52, 211, 153, 0.5); }
-.toast--warn { border-color: rgba(251, 191, 36, 0.5); }
+.toast--ok   { border-color: rgba(111, 191, 139, 0.5); }
+.toast--warn { border-color: rgba(34, 211, 238, 0.5); }
 
 /* ==========================================================================
    15. 返回顶部

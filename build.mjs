@@ -18,11 +18,18 @@ import { fileURLToPath } from 'node:url';
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGES_DIR = join(ROOT, 'src', 'pages');
 
+/* 正式域名：部署后改成自己的域名（用于 canonical / og:url / sitemap） */
+const SITE_URL = 'https://awm.pages.dev';
+
+/* 样式按顺序合并成一个 app.css，减少渲染阻塞请求 */
+const CSS_FILES = ['fonts.css', 'variables.css', 'base.css', 'animations.css', 'loader.css', 'components.css', 'style.css'];
+
 /* ── 导航定义（顺序即显示顺序） ── */
 const NAV = [
   ['index.html', '首页'],
   ['download.html', '下载'],
   ['features.html', '功能'],
+  ['changelog.html', '更新日志'],
   ['faq.html', '教程与答疑']
 ];
 
@@ -31,7 +38,7 @@ const NAV = [
    ══════════════════════════════════════════════════════════════════ */
 
 const LOADER = `
-<div id="boot-loader" role="status" aria-live="polite" aria-label="站点加载中">
+<div id="boot-loader" aria-hidden="true">
   <div class="boot-stage">
     <div class="boot-ring" aria-hidden="true"></div>
     <div class="boot-ring boot-ring--inner" aria-hidden="true"></div>
@@ -65,14 +72,14 @@ const LOADER = `
     <div class="boot-floor" aria-hidden="true"></div>
   </div>
   <div class="boot-wordmark" id="boot-wordmark" aria-hidden="true"></div>
-  <div class="boot-sub" aria-hidden="true">Preternatural Assistant</div>
+  <div class="boot-sub" aria-hidden="true">超自然辅助</div>
   <div class="boot-progress">
     <div class="boot-bar">
       <div class="boot-bar__fill" id="boot-bar-fill"></div>
       <div class="boot-bar__shine" aria-hidden="true"></div>
     </div>
     <div class="boot-meta">
-      <span>Loading Resources</span>
+      <span>正在载入</span>
       <span class="boot-meta__pct" id="boot-pct">000%</span>
     </div>
   </div>
@@ -81,7 +88,7 @@ const LOADER = `
 
 function navBlock(active) {
   const main = NAV.map(([h, t]) =>
-    `<a class="nav__link${h === active ? ' is-active' : ''}" href="./${h}">${t}</a>`).join('\n        ');
+    `<a class="nav__link${h === active ? ' is-active' : ''}" href="./${h}"${h === active ? ' aria-current="page"' : ''}>${t}</a>`).join('\n        ');
   const drawer = NAV.map(([h, t]) => `<a class="nav__link" href="./${h}">${t}</a>`).join('\n    ');
 
   return `
@@ -116,7 +123,7 @@ function navBlock(active) {
   <!-- 公告条 -->
   <div class="announce" data-bind-hide-empty>
     <div class="announce__inner">
-      <span class="announce__icon">📢</span>
+      <span class="announce__icon" aria-hidden="true"></span>
       <span class="announce__text" data-bind="site.announcement">公告</span>
       <button class="announce__close" type="button" aria-label="关闭公告">✕</button>
     </div>
@@ -142,6 +149,7 @@ const FOOTER = `
           <a class="footer__link" href="./index.html">首页</a>
           <a class="footer__link" href="./download.html">下载中心</a>
           <a class="footer__link" href="./features.html">功能介绍</a>
+          <a class="footer__link" href="./changelog.html">更新日志</a>
         </div>
 
         <div>
@@ -159,7 +167,7 @@ const FOOTER = `
 
       <div class="footer__bottom">
         <span>© <span data-year>2026</span> <span data-bind="site.author">AWM 开发组</span> · <span data-bind="site.footer_note">愿你我惺惺相惜</span></span>
-        <span class="mono xs faint">v<span data-bind="version.current">0.1.0</span></span>
+        <span class="mono xs faint">v<span data-bind="version.current">0.0.5</span></span>
       </div>
     </div>
   </footer>
@@ -175,8 +183,21 @@ const SCRIPTS = `
 /* ══════════════════════════════════════════════════════════════════
    Shell 模板
    ══════════════════════════════════════════════════════════════════ */
-function shell(meta, body) {
+function productVersion() {
+  try {
+    const js = readFileSync(join(ROOT, 'assets', 'js', 'config.js'), 'utf8');
+    const m = js.match(/current:\s*'([^']+)'/);
+    if (m) return m[1];
+  } catch (e) {}
+  return '0.0.5';
+}
+
+function shell(meta, body, file) {
   const extraCss = (meta.css || []).map(f => `<link rel="stylesheet" href="./assets/css/${f}">`).join('\n');
+  const pagePath = file === 'index.html' ? '/' : '/' + file;
+  const canonical = SITE_URL + pagePath;
+  const ogImage = SITE_URL + '/assets/img/og-cover.png';
+  const version = productVersion();
 
   return `<!DOCTYPE html>
 <html lang="zh-CN" data-booted="0">
@@ -184,31 +205,42 @@ function shell(meta, body) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#04060d">
+<meta name="color-scheme" content="dark light">
 <title>${meta.title}</title>
 <meta name="description" content="${meta.desc}">
+<link rel="canonical" href="${canonical}">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="AWM">
 <meta property="og:title" content="${meta.title}">
 <meta property="og:description" content="${meta.desc}">
-<meta property="og:image" content="./assets/img/logo.svg">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${ogImage}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AWM 超自然辅助">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${meta.title}">
+<meta name="twitter:description" content="${meta.desc}">
+<meta name="twitter:image" content="${ogImage}">
 
 <link rel="icon" href="./assets/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="./assets/img/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="./assets/css/variables.css" as="style">
+<link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+<link rel="preload" href="./assets/fonts/Inter-400_800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/ChakraPetch-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/ChakraPetch-700.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="./assets/css/variables.css">
-<link rel="stylesheet" href="./assets/css/base.css">
-<link rel="stylesheet" href="./assets/css/animations.css">
-<link rel="stylesheet" href="./assets/css/loader.css">
-<link rel="stylesheet" href="./assets/css/components.css">
-<link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/app.css">
 ${extraCss}
+<noscript><style>
+  #boot-loader { display: none !important; }
+  body.is-booting { overflow: auto; }
+  #app { opacity: 1 !important; }
+</style></noscript>
 </head>
 
 <body class="is-booting">
+<a class="skip-link" href="#main-content">跳到主内容</a>
 
 <!-- 首次访问判定：在首帧前同步打标记，跳过动画时不会闪一下淡入 -->
 <script>
@@ -224,17 +256,21 @@ ${extraCss}
 
 <!-- ═══ 启动加载动画 ═══ -->
 ${LOADER}
+<div class="sr-only" role="status" aria-live="polite">页面正在载入</div>
 
 <!-- ═══ 页面主体 ═══ -->
 <div id="app">
 ${navBlock(meta.active)}
 
-  <main>
+  <main id="main-content">
 ${body}
   </main>
 ${FOOTER}
 </div>
 ${SCRIPTS}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AWM 超自然辅助","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows 10, Windows 11","softwareVersion":"${version}","url":"${SITE_URL}/","downloadUrl":"${SITE_URL}/download.html"}
+</script>
 </body>
 </html>
 `;
@@ -267,11 +303,70 @@ function parseSource(text, file) {
   return { meta, body: m[2].trimEnd() };
 }
 
+function buildCssBundle() {
+  const parts = [];
+  for (const f of CSS_FILES) {
+    const fp = join(ROOT, 'assets', 'css', f);
+    if (!existsSync(fp)) { console.error('  ✗ 缺少样式文件: ' + f); continue; }
+    parts.push(`/* ===== ${f} ===== */\n` + readFileSync(fp, 'utf8'));
+  }
+  const css = parts.join('\n');
+  writeFileSync(join(ROOT, 'assets', 'css', 'app.css'), css, 'utf8');
+  console.log(`  ✓ app.css ${(Buffer.byteLength(css, 'utf8') / 1024).toFixed(1)} KB`);
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+const LOG_TAG_CLASS = { '新增': 'new', '优化': 'opt', '修复': 'fix', '安全': 'sec' };
+
+function renderChangelog() {
+  const file = join(ROOT, 'src', 'data', 'changelog.json');
+  if (!existsSync(file)) return '<p class="dim">更新日志准备中。</p>';
+  let data;
+  try { data = JSON.parse(readFileSync(file, 'utf8')); }
+  catch (e) { console.error('  ✗ changelog.json 解析失败: ' + e.message); return '<p class="dim">更新日志暂时无法显示。</p>'; }
+
+  const entries = Array.isArray(data.entries) ? data.entries : [];
+  if (!entries.length) return '<p class="dim">更新日志准备中。</p>';
+
+  const siteVersion = productVersion();
+  if (entries[0].version !== siteVersion) {
+    console.warn(`  ! 更新日志最新版本 ${entries[0].version} 与站点版本 ${siteVersion} 不一致（config.js）`);
+  }
+
+  return entries.map(en => {
+    const items = (en.items || []).map(it => `<li><span class="log-tag log-tag--${LOG_TAG_CLASS[it.type] || 'opt'}">${escapeHtml(it.type)}</span><span>${escapeHtml(it.text)}</span></li>`).join('');
+    return `
+          <article class="log-entry" data-reveal>
+            <div class="log-meta">
+              <time class="log-date" datetime="${escapeHtml(en.date)}">${escapeHtml(en.date)}</time>
+              <span class="log-ver">v${escapeHtml(en.version)}</span>
+            </div>
+            <div class="log-body">
+              <h2 class="log-title">${escapeHtml(en.title || '')}</h2>
+              <ul class="log-list">${items}</ul>
+            </div>
+          </article>`;
+  }).join('');
+}
+
+function buildSitemap(files) {
+  const pages = files.filter(f => f !== '404.html');
+  const urls = pages.map(f => `  <url><loc>${SITE_URL}/${f === 'index.html' ? '' : f}</loc></url>`).join('\n');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  writeFileSync(join(ROOT, 'sitemap.xml'), xml, 'utf8');
+  console.log(`  ✓ sitemap.xml ${pages.length} 条`);
+}
+
 function build() {
   if (!existsSync(PAGES_DIR)) {
     console.error('✗ 找不到 src/pages/');
     process.exit(1);
   }
+
+  buildCssBundle();
 
   const files = readdirSync(PAGES_DIR).filter(f => f.endsWith('.html'));
   let ok = 0;
@@ -279,8 +374,11 @@ function build() {
   for (const f of files) {
     const raw = readFileSync(join(PAGES_DIR, f), 'utf8');
     try {
-      const { meta, body } = parseSource(raw, f);
-      const html = shell(meta, body);
+      let { meta, body } = parseSource(raw, f);
+      if (body.includes('<!-- BUILD:CHANGELOG -->')) {
+        body = body.replace('<!-- BUILD:CHANGELOG -->', renderChangelog());
+      }
+      const html = shell(meta, body, f);
       writeFileSync(join(ROOT, f), html, 'utf8');
       const kb = (Buffer.byteLength(html, 'utf8') / 1024).toFixed(1);
       console.log(`  ✓ ${f.padEnd(18)} ${kb.padStart(6)} KB  ${meta.title}`);
@@ -290,6 +388,7 @@ function build() {
     }
   }
 
+  buildSitemap(files);
   console.log(`\n生成完成：${ok}/${files.length} 页\n`);
 }
 

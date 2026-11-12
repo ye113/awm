@@ -1,60 +1,73 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    AWM 站点 · 设计变量
    改配色只改这一个文件。
+
+   方向：赛博霓虹 —— 深空蓝黑底 + 青 / 紫 / 品红三色信号，
+   锐利直角、玻璃拟态、网格与极光。强调色仍以青为主，紫/品红只做点缀。
    ========================================================================== */
 
 :root {
-  /* ── 底色层级（越往后越亮） ── */
+  /* ── 底色层级（深空蓝黑，越往后越亮） ── */
   --bg-void:      #04060d;
   --bg-deep:      #070b16;
   --bg-base:      #0a1020;
   --bg-raise:     #0f1729;
-  --bg-card:      rgba(18, 26, 46, 0.72);
-  --bg-card-hi:   rgba(26, 37, 63, 0.86);
+  --bg-card:      rgba(18, 26, 46, 0.68);
+  --bg-card-hi:   rgba(26, 37, 63, 0.88);
   --bg-glass:     rgba(12, 18, 34, 0.62);
 
-  /* ── 主色：青蓝 → 紫 → 品红 ── */
+  /* ── 三色信号 ── */
   --c-cyan:       #22d3ee;
+  --c-cyan-hi:    #67e8f9;
   --c-cyan-dim:   #0e7490;
   --c-violet:     #818cf8;
   --c-violet-dim: #4338ca;
   --c-pink:       #f472b6;
   --c-pink-dim:   #be185d;
-  --c-amber:      #fbbf24;
   --c-green:      #34d399;
   --c-red:        #f87171;
 
+  /* 旧变量名保留映射，组件样式继续可用 */
+  --c-amber:      var(--c-cyan);
+  --c-amber-hi:   var(--c-cyan-hi);
+  --c-amber-dim:  var(--c-cyan-dim);
+  --c-copper:     var(--c-pink);
+  --c-copper-dim: var(--c-pink-dim);
+  --c-steel:      var(--c-violet);
+  --c-steel-dim:  var(--c-violet-dim);
+  --c-amber-warn: var(--c-cyan);
+
   /* ── 渐变 ── */
-  --grad-main:  linear-gradient(120deg, var(--c-cyan) 0%, var(--c-violet) 52%, var(--c-pink) 100%);
+  --grad-main:  linear-gradient(100deg, var(--c-cyan) 0%, var(--c-violet) 52%, var(--c-pink) 100%);
   --grad-cool:  linear-gradient(135deg, var(--c-cyan) 0%, var(--c-violet) 100%);
   --grad-warm:  linear-gradient(135deg, var(--c-violet) 0%, var(--c-pink) 100%);
   --grad-edge:  linear-gradient(90deg, transparent, var(--c-cyan), var(--c-violet), var(--c-pink), transparent);
 
-  /* ── 文字 ── */
+  /* ── 文字（冷白） ── */
   --tx-hi:    #f2f6ff;
   --tx:       #c3cde4;
   --tx-dim:   #8593b0;
-  --tx-faint: #5a6785;
+  --tx-faint: #7f8bab;
 
   /* ── 描边 ── */
   --line:       rgba(129, 140, 248, 0.16);
   --line-hi:    rgba(129, 140, 248, 0.34);
-  --line-glow:  rgba(34, 211, 238, 0.45);
+  --line-glow:  rgba(34, 211, 238, 0.55);
 
   /* ── 发光 ── */
   --glow-cy:  0 0 24px rgba(34, 211, 238, 0.38);
   --glow-vi:  0 0 28px rgba(129, 140, 248, 0.34);
-  --glow-pk:  0 0 28px rgba(244, 114, 182, 0.30);
-  --shadow-card: 0 18px 48px -18px rgba(0, 0, 0, 0.9);
-  --shadow-lift: 0 26px 64px -20px rgba(0, 0, 0, 0.95);
+  --glow-pk:  0 0 28px rgba(244, 114, 182, 0.28);
+  --shadow-card: 0 18px 48px -22px rgba(0, 0, 0, 0.9);
+  --shadow-lift: 0 26px 64px -24px rgba(0, 0, 0, 0.95);
 
-  /* ── 圆角 ── */
-  --r-xs: 6px;
-  --r-sm: 10px;
-  --r-md: 16px;
-  --r-lg: 22px;
-  --r-xl: 30px;
-  --r-pill: 999px;
+  /* ── 圆角：锐利仪表风 ── */
+  --r-xs: 2px;
+  --r-sm: 3px;
+  --r-md: 4px;
+  --r-lg: 6px;
+  --r-xl: 8px;
+  --r-pill: 2px;
 
   /* ── 间距节奏 ── */
   --sp-1: 4px;
@@ -69,19 +82,20 @@
   /* ── 动效 ── */
   --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
   --ease-io:   cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --t-fast: 0.18s;
-  --t-mid:  0.34s;
-  --t-slow: 0.72s;
+  --ease-back: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --t-fast: 0.16s;
+  --t-mid:  0.28s;
+  --t-slow: 0.6s;
 
   /* ── 版心 ── */
-  --page-max: 1240px;
-  --nav-h: 68px;
+  --page-max: 1200px;
+  --nav-h: 66px;
 
   /* ── 字体 ── */
-  --ff: "Inter", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei",
+  --ff: "Inter", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei",
         system-ui, -apple-system, "Segoe UI", sans-serif;
-  --ff-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  --ff-display: "Chakra Petch", "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --ff-mono: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 /* ── 亮色主题（可选，由 data-theme 切换） ── */
@@ -90,13 +104,13 @@
   --bg-deep:  #f6f8fe;
   --bg-base:  #ffffff;
   --bg-raise: #f2f5fd;
-  --bg-card:      rgba(255, 255, 255, 0.88);
+  --bg-card:      rgba(255, 255, 255, 0.9);
   --bg-card-hi:   rgba(255, 255, 255, 0.98);
-  --bg-glass:     rgba(255, 255, 255, 0.72);
+  --bg-glass:     rgba(255, 255, 255, 0.78);
   --tx-hi:    #0b1220;
   --tx:       #2c3a55;
   --tx-dim:   #5b6a88;
-  --tx-faint: #8b98b4;
+  --tx-faint: #6b7a98;
   --line:     rgba(67, 56, 202, 0.14);
   --line-hi:  rgba(67, 56, 202, 0.3);
   --shadow-card: 0 14px 40px -16px rgba(30, 41, 90, 0.28);

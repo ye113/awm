@@ -12,16 +12,15 @@
   'use strict';
 
   var CFG = window.RS_CONFIG || {};
-  var MIN_MS = CFG.loaderMinMs || 2000;
-  var MAX_MS = CFG.loaderMaxMs || 6000;
+  var MIN_MS = (CFG.loaderMinMs == null) ? 650 : CFG.loaderMinMs;
+  var MAX_MS = CFG.loaderMaxMs || 5000;
 
+  // 只写真实发生的动作，不编造“校验签名”之类的假日志
   var LOG_STEPS = [
-    { text: '初始化渲染管线', at: 0 },
-    { text: '装载站点配置', at: 16 },
-    { text: '同步资源清单', at: 34 },
-    { text: '校验版本签名', at: 52 },
-    { text: '预热界面缓存', at: 70 },
-    { text: '启动完成', at: 90 }
+    { text: '载入界面', at: 0 },
+    { text: '读取站点配置', at: 35 },
+    { text: '准备截图', at: 72 },
+    { text: '就绪', at: 94 }
   ];
 
   var t0 = performance.now();
@@ -146,7 +145,9 @@
     /* 是否播放：loader === true 每次都播；false 从不播；
        'once'（默认）只在本会话首次进入站点时播。
        首帧前已在 <head> 打过 data-skip-boot 标记，这里与之保持一致。 */
-    var mode = CFG.loader;
+    // 减少动画偏好：不做任何加载动画，直接显示内容
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mode = reduceMotion ? false : CFG.loader;
     var played = document.documentElement.hasAttribute('data-skip-boot');
     if (!played) {
       try { played = sessionStorage.getItem('rs_booted') === '1'; } catch (e) { played = false; }
