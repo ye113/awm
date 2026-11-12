@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://awm.pages.dev/sitemap.xml
+Sitemap: https://awm.yexinghan.dpdns.org/sitemap.xml

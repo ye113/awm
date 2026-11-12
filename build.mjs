@@ -19,7 +19,7 @@ const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGES_DIR = join(ROOT, 'src', 'pages');
 
 /* 正式域名：部署后改成自己的域名（用于 canonical / og:url / sitemap） */
-const SITE_URL = 'https://awm.pages.dev';
+const SITE_URL = 'https://awm.yexinghan.dpdns.org';
 
 /* 样式按顺序合并成一个 app.css，减少渲染阻塞请求 */
 const CSS_FILES = ['fonts.css', 'variables.css', 'base.css', 'animations.css', 'loader.css', 'components.css', 'style.css'];
