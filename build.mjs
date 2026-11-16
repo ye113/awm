@@ -21,6 +21,9 @@ const PAGES_DIR = join(ROOT, 'src', 'pages');
 /* 正式域名：部署后改成自己的域名（用于 canonical / og:url / sitemap） */
 const SITE_URL = 'https://awm.yexinghan.dpdns.org';
 
+/* 姊妹服务「号牌行」入口（兜底链接；正式值也可在 config.js 的 RS_DATA.roomkeeper.url 覆盖） */
+const RK_URL = 'http://room.yexinghan.dpdns.org/';
+
 /* 样式按顺序合并成一个 app.css，减少渲染阻塞请求 */
 const CSS_FILES = ['fonts.css', 'variables.css', 'base.css', 'animations.css', 'loader.css', 'components.css', 'style.css'];
 
@@ -108,6 +111,7 @@ function navBlock(active) {
         ${main}
       </nav>
       <div class="nav__actions">
+        <a class="btn btn--sm nav__rk" href="${RK_URL}" data-bind-attr="href:roomkeeper.url" target="_blank" rel="noopener noreferrer"><span class="rk-dot" aria-hidden="true"></span>号牌行</a>
         <a class="btn btn--primary btn--sm" href="./download.html">立即下载</a>
         <button class="nav__burger" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -117,6 +121,7 @@ function navBlock(active) {
   <!-- 移动端抽屉 -->
   <div class="nav__drawer">
     ${drawer}
+    <a class="btn btn--ghost btn--block nav__rk" href="${RK_URL}" data-bind-attr="href:roomkeeper.url" target="_blank" rel="noopener noreferrer"><span class="rk-dot" aria-hidden="true"></span>号牌行</a>
     <a class="btn btn--primary btn--block" href="./download.html">立即下载</a>
   </div>
 

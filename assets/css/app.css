@@ -1835,6 +1835,119 @@ body.has-cursor .cursor-glow { opacity: 1; }
   .tbl th, .tbl td { padding: 11px 13px; }
 }
 
+
+/* ==========================================================================
+   12. 号牌行入口（姊妹服务）
+   ========================================================================== */
+
+/* 顶部导航里的胶囊入口 */
+.nav__rk {
+  gap: 7px;
+  border-color: rgba(244, 114, 182, 0.42);
+  background: rgba(244, 114, 182, 0.08);
+  color: var(--c-pink);
+}
+.nav__rk:hover { border-color: var(--c-pink); box-shadow: var(--glow-pk); color: #fff; }
+.rk-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--c-pink); box-shadow: 0 0 8px var(--c-pink);
+  animation: dotBlink 2s var(--ease-io) infinite;
+  flex-shrink: 0;
+}
+
+/* 首页大入口 */
+.rk-sec { padding-top: 0; }
+.rk-band {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.32fr 0.92fr;
+  align-items: center;
+  gap: var(--sp-6);
+  padding: clamp(22px, 3.4vw, 38px);
+  border: 1px solid rgba(244, 114, 182, 0.30);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(120% 160% at 100% 0%, rgba(244, 114, 182, 0.14), transparent 55%),
+    linear-gradient(160deg, rgba(129, 140, 248, 0.10), transparent 46%),
+    var(--bg-card-hi);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  color: inherit;
+  transition: transform var(--t-mid) var(--ease-out), border-color var(--t-mid), box-shadow var(--t-mid);
+}
+.rk-band::before {
+  content: "";
+  position: absolute; top: 0; left: 8%; right: 8%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-violet), var(--c-pink), transparent);
+  opacity: 0.85;
+}
+.rk-band__glow {
+  position: absolute; right: -120px; top: -120px;
+  width: 340px; height: 340px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(244, 114, 182, 0.28), transparent 70%);
+  filter: blur(50px); pointer-events: none;
+}
+.rk-band:hover { transform: translateY(-4px); border-color: rgba(244, 114, 182, 0.6); box-shadow: var(--shadow-lift), var(--glow-pk); }
+
+.rk-status {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--c-pink);
+}
+.rk-status__dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--c-pink); box-shadow: 0 0 10px var(--c-pink);
+  animation: dotBlink 2s var(--ease-io) infinite;
+}
+.rk-status__sep { width: 1px; height: 11px; background: var(--line-hi); }
+
+.rk-band__title { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 12px 0 10px; }
+.rk-band__name {
+  font-family: var(--ff-display);
+  font-size: clamp(26px, 3.4vw, 40px); font-weight: 800; letter-spacing: 0.04em;
+  background: var(--grad-warm);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.rk-band__sub { font-size: clamp(13px, 1.6vw, 15px); font-weight: 600; color: var(--tx); }
+.rk-band__desc { max-width: 46ch; color: var(--tx-dim); line-height: 1.75; font-size: 14px; }
+
+.rk-band__aside { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.rk-code { display: flex; gap: 7px; }
+.rk-cell {
+  width: clamp(30px, 3.6vw, 42px); height: clamp(38px, 4.6vw, 54px);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: rgba(7, 11, 22, 0.6);
+  font-family: var(--ff-mono);
+  font-size: clamp(18px, 2.4vw, 26px); font-weight: 700; color: var(--tx-dim);
+}
+.rk-cell--hit {
+  color: var(--c-pink); border-color: rgba(244, 114, 182, 0.5);
+  background: rgba(244, 114, 182, 0.1);
+  box-shadow: inset 0 0 18px rgba(244, 114, 182, 0.16);
+  text-shadow: 0 0 12px rgba(244, 114, 182, 0.6);
+}
+.rk-code__cap { font-size: 11.5px; color: var(--tx-faint); font-family: var(--ff-mono); letter-spacing: 0.02em; }
+
+.rk-cta {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 4px;
+  padding: 11px 22px; border-radius: var(--r-pill);
+  background: var(--grad-warm); color: #0a0710;
+  font-weight: 700; font-size: 14px;
+  box-shadow: 0 10px 30px -10px rgba(244, 114, 182, 0.6);
+  transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-mid) var(--ease-out);
+}
+.rk-band:hover .rk-cta { transform: translateX(3px); box-shadow: 0 14px 34px -10px rgba(244, 114, 182, 0.8); }
+.rk-cta__arrow { font-size: 15px; }
+
+@media (max-width: 860px) {
+  .rk-band { grid-template-columns: 1fr; gap: var(--sp-5); }
+  .rk-band__aside { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .rk-code__cap { flex-basis: 100%; }
+}
+@media (max-width: 480px) {
+  .rk-code { gap: 5px; }
+}
+
 /* ===== style.css ===== */
 /* ==========================================================================
    AWM 站点 · 页面级样式

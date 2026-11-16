@@ -67,6 +67,13 @@ window.RS_DATA = {
     qq_number: '1109329652'
   },
 
+  /* 姊妹服务：号牌行（稀有房号）。改这里即可换入口链接/文案 */
+  roomkeeper: {
+    name: '号牌行',
+    url: 'http://room.yexinghan.dpdns.org/',
+    tagline: '稀有房号 · 即时开刷'
+  },
+
   highlights: [
     { icon: '🎯', title: '自研预测', desc: '按距离分段设置弹速，拉枪更稳', url: './features.html#aimbot' },
     { icon: '🌀', title: '内存 / 静默', desc: '两种瞄准方式，独立热键随时切换', url: './features.html#aimbot' },

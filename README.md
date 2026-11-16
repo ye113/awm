@@ -46,6 +46,7 @@ python -m http.server 8899
 | 想改什么 | 改哪里 |
 |---|---|
 | 版本号 / 下载链接 / QQ / 购卡 | `assets/js/config.js` → `RS_DATA` |
+| 号牌行入口链接/文案 | `assets/js/config.js` → `RS_DATA.roomkeeper`（首页大入口 + 顶栏胶囊都用它） |
 | 更新日志 | `src/data/changelog.json`（改完 `node build.mjs`） |
 | 功能页截图 | `assets/img/features/` 同名替换 |
 | 页面结构 / 文案布局 | `src/pages/*.html` 后跑 `node build.mjs` |

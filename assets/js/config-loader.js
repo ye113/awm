@@ -26,6 +26,7 @@
     },
     shop: { name: '购卡', desc: '', url: '#' },
     community: { qq_url: '#', qq_label: '加入交流群', qq_number: '' },
+    roomkeeper: { name: '号牌行', url: '', tagline: '' },
     highlights: []
   };
 
