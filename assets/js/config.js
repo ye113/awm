@@ -29,8 +29,8 @@ window.RS_DATA = {
   },
 
   version: {
-    current: '0.1.2',
-    date: '2026-11-15',
+    current: '0.1.3',
+    date: '2026-11-19',
     size: '19.0 MB',
     platform: 'Windows 10 / 11 · x64'
   },
