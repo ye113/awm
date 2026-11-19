@@ -70,7 +70,7 @@ window.RS_DATA = {
   /* 姊妹服务：号牌行（稀有房号）。改这里即可换入口链接/文案 */
   roomkeeper: {
     name: '号牌行',
-    url: 'http://room.yexinghan.dpdns.org/',
+    url: 'https://room.yexinghan.dpdns.org/',
     tagline: '稀有房号 · 即时开刷'
   },
 
