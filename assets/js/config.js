@@ -62,8 +62,8 @@ window.RS_DATA = {
   },
 
   community: {
-    qq_url: 'https://qm.qq.com/q/47gswt0Qw8',
-    qq_label: '点击链接加入群聊【古德猫宁】',
+    qq_url: 'https://qm.qq.com/q/qfx1bO4OGI',
+    qq_label: '点击链接加入群聊【二代九儿狙击】',
     qq_number: '1109329652'
   },
 
